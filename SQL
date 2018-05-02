@@ -388,3 +388,40 @@ ALTER TABLE my_contacts
 ADD COLUMN contact_id INT NOT NULL AUTO_INCREMENT FIRST,
 ADD PRIMARY KEY (contact_id);
 
+//-------------------------
+
+ALTER TABLE my_contacts
+ADD COLUMN phone CHAR(10) AFTER first_name;
+
+//-------------------------
+
+CREATE TABLE projects(
+`number` INT,
+descriptionofproj VARCHAR(50),
+contractoronjob VARCHAR(10)
+);
+
+ALTER TABLE projects
+RENAME TO project_list;
+
+ALTER TABLE project_list
+CHANGE COLUMN `number` proj_id INT NOT NULL AUTO_INCREMENT,
+ADD PRIMARY KEY(proj_id);
+
+describe project_list;
+
+ALTER TABLE project_list
+CHANGE COLUMN descriptionofproj proj_desc VARCHAR(100);
+CHANGE COLUMN contractoronjob con_name VARCHAR(30);
+
+ALTER TABLE project_list
+MODIFY COLUMN proj_desc VARCHAR(120);
+
+ALTER TABLE project_list
+ADD COLUMN con_phone VARCHAR(10),
+ADD COLUMN start_date DATE,
+ADD COLUMN est_cost DEC(7,2);
+
+ALTER TABLE project_list
+DROP COLUMN start_date;
+
