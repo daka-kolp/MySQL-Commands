@@ -1,0 +1,390 @@
+CREATE DATABASE gregs_list;
+
+//-------------------------
+
+USE gregs_list;
+
+//-------------------------
+
+CREATE TABLE my_contacts(
+last_name VARCHAR(30) NOT NULL,
+first_name VARCHAR(20) NOT NULL,
+email VARCHAR(50) NOT NULL,
+birthday DATE NOT NULL,
+gender CHAR(1) NOT NULL,
+profession VARCHAR(50) NOT NULL,
+location VARCHAR(50) NOT NULL,
+status VARCHAR(20) NOT NULL,
+interests VARCHAR(100) NOT NULL,
+seeking VARCHAR(100) NOT NULL
+);
+
+//-------------------------
+
+DROP TABLE my_contacts;
+
+//-------------------------
+
+INSERT INTO my_contacts (last_name, first_name, email, birthday, gender, profession, location, status, interests, seeking)
+VALUES
+('Anderson', 'Jillian', 'jill_anderson@gmai.com', '1990-05-09', 'F','Writer', 'Pail-Alto CA', 'not marrige', 'theater', 'friends');  
+
+//-------------------------
+
+INSERT INTO my_contacts (first_name, email, profession, location)
+VALUES
+('Pit', 'pitpost@ya.com', 'postman', 'Mealburn, WC');
+
+//-------------------------
+
+DESC my_contacts;
+
+//-------------------------
+
+
+CREATE TABLE my_contacts(
+last_name VARCHAR(30),
+first_name VARCHAR(20),
+email VARCHAR(50),
+gender CHAR(1),
+birthday DATE,
+profession VARCHAR(50),
+location VARCHAR(50),
+status VARCHAR(20),
+interests VARCHAR(100),
+seeking VARCHAR(100)
+);
+
+//-------------------------
+
+SELECT * FROM my_contacts;
+
+//-------------------------
+//-------------------------
+//-------------------------
+
+CREATE DATABASE drinks;
+
+//-------------------------
+
+USE drinks;
+
+//-------------------------
+
+CREATE TABLE easy_drinks(
+drink_name VARCHAR(20),
+price DEC(3,2),
+main VARCHAR(20),
+amount1 DEC(3,1),
+second VARCHAR(20),
+amount2 DEC(3,2),
+directions VARCHAR(250)
+);
+
+//-------------------------
+
+DESC easy_drinks;
+
+//-------------------------
+
+INSERT INTO easy_drinks 
+VALUES
+('Blackthorn', 4.25, 'tonic', 1.5, 'pineapple juice', 1, 'shake with ice, pour over glasses, decorate with lemon zest'),
+('Blue Lagoon', 1.5, 'soda', 1.5, 'blueberry juice', 0.75, 'shake with ice, pour over glasses, decorate with lemon zest'),
+('Here you are', 3.75, 'peach nectar', 1, 'pineapple juice', 1, 'shake with ice, pour into glasses'),
+('Lime frieze', 2.5, 'Sprite', 1.5, 'lime juice', 0.75, 'shake with ice, pour into glasses'),
+('Kiss', 3.5, 'cherry juice', 2, 'apricot nectar', 7, 'serve with ice and straw'),
+('Hot gold', 2, 'peach nectar', 3, 'orange juice', 6, 'pour a hot orange juice into the mug, add peach nectar'),
+('Lonely tree', 4, 'soda', 1.5, 'cherry juice', 0.75, 'shake with ice, pour over glasses'),
+('Greyhound', 3.5, 'soda', 1.5, 'grapefruit juice', 5, 'serve with ice, shake thoroughly'),
+('Indian summer', 2.5, 'apple juice', 2, 'hot tea', 6, 'pour into a mug, add hot tea'),
+('Frog', 2.5, 'cold tea', 1.5, 'lemonade', 5, 'serve on ice with a slice of lime'),
+('Soda plus', 2.5, 'soda', 2, 'grape juice', 1, 'shake in a glass, serve without ice');
+
+
+('Терновник', 'тоник', 1.5, 'ананасовый сок', 1, 'взболтать со льдом, разлить по бокалам, украсить лимонной цедрой'),
+('Голубая лагуна', 'содовая', 1.5, 'черничный сок', 0.75, 'взболтать со льдом, разлить по бокалам, украсить лимонной цедрой'),
+('Вот тебе на', 'персиковый нектар', 1, 'ананасовый сок', 1, 'взболтать со льдом, разлить по стакнам'),
+('Лаймовый фриз', 'Спрайт', 1.5, 'сок лайма', 0.75, 'взболтать со льдом, разлить по бокалам'),
+('Поцелуй', 'вишневый сок', 2, 'абрикосовый нектар', 7, 'подавать со льдом и соломинкой'),
+('Горячее золото', 'персиковый нектар', 3, 'апельсиновый сок', 6, 'влить в кружку горячий апельсиновый сок, довавить персиковый нектар'),  
+('Одинокое дерево', 'содовая', 1.5, 'вишневый сок', 0.75, 'взболтать со льдом, разлить по стакнам'),
+('Борзая', 'содовая', 1.5, 'грейпфрутовый сок', 5, 'подавать со льдом, тщательно взболтать'),
+('Бабье лето', 'яблочный сок', 2, 'горячий чай', 6, 'налить в кружку, добавить горячий чай'),
+('Лягушка', 'холодный чай', 1.5, 'лимонад', 5, 'подавать на льду с ломтиком лайма'),
+('Сода плюс', 'содовая', 2, 'виноградный сок', 1, 'взболтать в бокале, подавать без льда');
+
+
+//------------------------
+
+SELECT * FROM easy_drinks;
+
+SELECT * FROM easy_drinks WHERE main = 'Sprite';
+
+SELECT * FROM easy_drinks WHERE main = 'soda';
+
+SELECT * FROM easy_drinks WHERE amount2 = 6;
+
+SELECT * FROM easy_drinks WHERE second = 'orange juice';
+
+SELECT * FROM easy_drinks WHERE amount1 < 1.5;
+
+SELECT * FROM easy_drinks WHERE amount2 < 1;
+
+SELECT * FROM easy_drinks WHERE amount1 = 1.5;
+
+SELECT * FROM easy_drinks WHERE main > 'soda';?????????????????
+
+//-------------------------
+
+SELECT drink_name, main, second FROM easy_drinks WHERE main = 'soda';
+
+//-------------------------
+
+('Kiss', 'cherry juice', 2, 'apricot nectar', 7, 'serve with ice and straw')
+
+SELECT drink_name FROM easy_drinks WHERE main = 'cherry juice';
+SELECT drink_name FROM easy_drinks WHERE second = 'apricot nectar';
+SELECT drink_name FROM easy_drinks WHERE amount2 = 7;
+SELECT drink_name FROM easy_drinks WHERE directions = 'serve with ice and straw';
+
+//-------------------------
+
+('Frog', 'cold tea', 1.5, 'lemonade', 5, 'serve on ice with a slice of lime')
+
+SELECT drink_name FROM easy_drinks WHERE main = 'cold tea';
+SELECT drink_name FROM easy_drinks WHERE second = 'lemonade';
+SELECT drink_name FROM easy_drinks WHERE directions = 'serve on ice with a slice of lime';
+
+//-------------------------
+
+CREATE TABLE my_contacts(
+last_name VARCHAR(30) NOT NULL,
+first_name VARCHAR(20) NOT NULL,
+email VARCHAR(50) NOT NULL,
+birthday DATE NOT NULL,
+gender CHAR(1) NOT NULL,
+profession VARCHAR(50) NOT NULL,
+location VARCHAR(50) NOT NULL,
+status VARCHAR(20) NOT NULL,
+interests VARCHAR(100) NOT NULL,
+seeking VARCHAR(100) NOT NULL
+);
+
+SELECT email FROM my_contacts WHERE profession = 'programmer';
+
+SELECT last_name, first_name, location FROM my_contacts WHERE birthday = '1993-08-01';
+
+SELECT last_name, first_name, email FROM my_contacts WHERE location = 'San Francisco' AND first_name = 'Ann'; 
+
+//---------------------------
+cost carbs color ice calories
+
+SELECT drink_name, cost FROM drink_info WHERE ice = 'y' AND color = 'yellow' AND calories > 33;
+
+SELECT drink_name, color FROM drink_info WHERE ice = 'y' AND carbs <= 4;
+
+SELECT drink_name, cost FROM drink_info WHERE calories >= 80;
+
+SELECT drink_name, color, ice FROM drink_info WHERE cost >= 4;
+
+//---------------------------
+
+SELECT drink_name FROM easy_drinks WHERE amount >= 1.5;
+
+SELECT drink_name FROM drink_info WHERE ice = 'n';
+
+SELECT drink_name FROM drink_info WHERE calories >= 20;
+
+//----------------------------
+//---------------------------
+//---------------------------
+
+CREATE DATABASE clowns;
+
+USE clowns;
+
+CREATE TABLE clown_info(
+name VARCHAR(15) NOT NULL,
+last_seen VARCHAR(50),
+appearence VARCHAR(150),
+activities VARCHAR(40)
+);
+
+INSERT INTO clown_info
+VALUES 
+('Elsie', 'The Cherry Hill''s House', 'F, red hair, green suit, huge shoes', 'balls, litte cars'),
+('Pickles', 'Jack Green''s Party', 'M, red hair, blue suit, huge shoes', 'mime'),
+('Snagles', 'Bolmard', 'F, yellow shirt, red pants', 'horn, umbrella'),
+('Mr. Hobo', 'BG Circus', 'M, cigar, black hair, little hat', 'violin'),
+('Clarabelle', 'The Belmond House', 'F, rose-colored glasses, big flower, blue dress', 'chants, dances'),
+('Scooter', 'Oakland Hospital', 'M, blue hair, red suit, big nose', 'balls'),
+('Zippo', 'Milstown Shopping Center', 'F, orange suit, pants', 'dancing'),
+('Babe', 'Earl''s Driving School Earl', 'F, pink suit with sparkles', 'balancing, little cars'),
+('Bonzo', NULL, 'M, a woman''s dress in polka dots', 'singing, dancing'),
+('Sniffles', 'Tracy''s Institution', 'M, green-purple suit, long nose', NULL);
+
+('Элси', 'Дом пристарелых Черри Хилл', 'Ж, рыжие волосы, зеленый костюм, огромные ботинки', 'шарики, машинки'),
+('Пиклз', 'Вечеринка Джека Грина', 'М, оранженые волосы, синий костюм, огромные ботинки', 'мим'),
+('Снаглз', 'Болмард', 'Ж, желтая рубашка, красные штаны', 'рожок, зонтик'),
+('Мистер Хобо', 'Цирк BG', 'М, сигара, черные волосы, маленькая шляпа', 'скрипка'),
+('Кларабелл', 'Дом пристарелых Бельмонд', 'Ж, розовые очки, большой цветок, синее платье', 'кричалки, танцы'),
+('Скутер', 'Больница Окленд', 'М, синие волосы, красный костюм, большой нос', 'шарики'),
+('Зиппо', 'Торговый центр Милстоун', 'Ж, оранжевый костюм, штаны', 'танцы'),
+('Бейб', 'Автошкола Эрла', 'Ж, розовый костюм с блестками', 'эквилибристика, машинки'),
+('Бонзо', '', 'М, женское платье в горошек', 'пение, танцы'),
+('Снифлс', 'Заведение Трейси', 'М, зелено-фиолетовый костюм, длинный нос', '');
+
+//--------------------------
+
+INSERT INTO clown_info
+VALUES
+('Zippo', 'Milstown Shopping Center', 'F, orange suit, pants', 'singing');
+
+('Зиппо', 'Торговый центр Милстоун', 'Ж, оранжевый костюм, штаны', 'танцы, пение');
+
+INSERT INTO clown_info
+VALUES 
+('Snagles', 'Bolmard', 'F, yellow shirt, blue pants', 'horn, umbrella');
+
+('Снаглз', 'Болмард', 'Ж, желтая рубашка, синие штаны', 'рожок, зонтик');
+
+INSERT INTO clown_info
+VALUES 
+('Bonzo', 'Dixon Park', 'M, women''s dress in polka dots', 'singing, dancing');
+
+('Бонзо', 'Парк Диксон', 'М, женское платье в горошек', 'пение, танцы');
+
+INSERT INTO clown_info
+VALUES
+('Sniffles', 'Tracy''s Institution', 'M, green-purple costume, long nose', 'ride on a little car');
+
+('Снифлс', 'Заведение Трейси', 'М, зелено-фиолетовый костюм, длинный нос', 'ездит на машинке');
+
+INSERT INTO clown_info
+VALUES
+('Mr. Hobo', 'Eric Gray''s Party', 'M, cigar, black hair, little hat', 'violin');
+
+('Мистер Хобо', 'Вечеринка Эрика Грея', 'М, сигара, черные волосы, маленькая шляпа', 'скрипка');
+
+//--------------------------
+
+DELETE FROM clown_info
+WHERE name = 'Zippo';
+
+SELECT * FROM clown_info;
+
+DELETE FROM clown_info
+WHERE name = 'Zippo' AND activities = 'dancing, singing';
+
+INSERT INTO clown_info
+VALUES
+('Mr. Hobo', 'Tracy''s Institution', 'M, cigar, black hair, little hat', 'violin');
+
+select * from clown_info where activities = 'dancing';
+
+UPDATE clown_info
+SET activities = 'singing, dancing'
+WHERE activities = 'dancing, singing';
+
+UPDATE clown_info
+SET activities = 'gitar'
+WHERE activities = 'violin';
+
+//--------------------------
+
+UPDATE clown_info
+SET activities = 'singing'
+WHERE name = 'Zippo';
+
+UPDATE clown_info
+SET appearence = 'F, yellow shirt, blue pants'
+WHERE name = 'Snagles';
+
+UPDATE clown_info 
+SET last_seen = 'Dixon Park'
+WHERE name = 'Bonzo';
+
+UPDATE clown_info
+SET activities = 'ride on s little car'
+WHERE name = 'Sniffles';
+
+UPDATE clown_info
+SET last_seen = 'Eric Gray''s Party'
+WHERE name = 'Mr. Hobo';
+
+//--------------------------
+
+UPDATE easy_drinks
+SET price = price + 1
+WHERE price = 2.5 OR price = 3.5;
+
+SELECT * FROM easy_drinks;
+
+//--------------------------
+//--------------------------
+//--------------------------
+
+
+SHOW CREATE TABLE easy_drink;
+
+CREATE TABLE my_contacts(
+contact_id INT NOT NULL AUTO_INCREMENT,
+last_name VARCHAR(30),
+first_name VARCHAR(20),
+email VARCHAR(50),
+gender CHAR(1),
+birthday DATE,
+profession VARCHAR(50),
+location VARCHAR(50),
+status VARCHAR(20),
+interests VARCHAR(100),
+seeking VARCHAR(100),
+PRIMARY KEY (contact_id)
+);
+
+//--------------------------
+CREATE TABLE my_table(
+id INT NOT NULL AUTO_INCREMENT,
+first_name VARCHAR(20),
+last_name VARCHAR(40),
+PRIMARY KEY (id)
+);
+
+INSERT INTO my_table (id, first_name, last_name)
+VALUE (NULL, 'Marsiya', 'Bredy');
+
+INSERT INTO my_table (id, first_name, last_name)
+VALUE (NULL, 'Jen', 'Bredy');
+
+INSERT INTO my_table
+VALUE (NULL, 'Bobby', 'Bredy');
+
+INSERT INTO my_table (first_name, last_name)
+VALUE ('Sindi', 'Bredy');
+
+INSERT INTO my_table (id, first_name, last_name)
+VALUE (99, 'Piter', 'Bredy');
+
+select * from my_table;
+
+delete from my_table where id > 98;
+//--------------------------
+
+CREATE TABLE my_contacts(
+last_name VARCHAR(30),
+first_name VARCHAR(20),
+email VARCHAR(50),
+gender CHAR(1),
+birthday DATE,
+profession VARCHAR(50),
+location VARCHAR(50),
+status VARCHAR(20),
+interests VARCHAR(100),
+seeking VARCHAR(100)
+);
+
+ALTER TABLE my_contacts
+ADD COLUMN contact_id INT NOT NULL AUTO_INCREMENT FIRST,
+ADD PRIMARY KEY (contact_id);
+
