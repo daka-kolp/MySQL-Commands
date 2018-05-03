@@ -425,3 +425,348 @@ ADD COLUMN est_cost DEC(7,2);
 ALTER TABLE project_list
 DROP COLUMN start_date;
 
+//--------------------------
+
+CREATE TABLE new_table(
+test_chars CHAR(1)
+);
+
+INSERT INTO new_table
+VALUE
+('0');
+
+INSERT INTO new_table
+VALUE
+('1');
+
+INSERT INTO new_table
+VALUE
+('2');
+
+INSERT INTO new_table
+VALUE
+('3');
+
+INSERT INTO new_table
+VALUE
+('A');
+
+INSERT INTO new_table
+VALUE
+('B');
+
+INSERT INTO new_table
+VALUE
+('C');
+
+INSERT INTO new_table
+VALUE
+('D');
+
+INSERT INTO new_table
+VALUE
+('a');
+
+INSERT INTO new_table
+VALUE
+('b');
+
+INSERT INTO new_table
+VALUE
+('c');
+
+INSERT INTO new_table
+VALUE
+('d');
+
+INSERT INTO new_table
+VALUE
+('!');
+
+INSERT INTO new_table
+VALUE
+('@');
+
+INSERT INTO new_table
+VALUE
+('#');
+
+INSERT INTO new_table
+VALUE
+('$');
+
+INSERT INTO new_table
+VALUE
+('%');
+
+INSERT INTO new_table
+VALUE
+('^');
+
+INSERT INTO new_table
+VALUE
+('&');
+
+INSERT INTO new_table
+VALUE
+('*');
+
+INSERT INTO new_table
+VALUE
+('(');
+
+INSERT INTO new_table
+VALUE
+(')');
+
+INSERT INTO new_table
+VALUE
+('-');
+
+INSERT INTO new_table
+VALUE
+('_');
+
+INSERT INTO new_table
+VALUE
+('+');
+
+INSERT INTO new_table
+VALUE
+('=');
+
+INSERT INTO new_table
+VALUE
+('[');
+
+INSERT INTO new_table
+VALUE
+(']');
+
+INSERT INTO new_table
+VALUE
+('{');
+
+INSERT INTO new_table
+VALUE
+('}');
+
+INSERT INTO new_table
+VALUE
+(';');
+
+INSERT INTO new_table
+VALUE
+(':');
+
+INSERT INTO new_table
+VALUE
+('\'');
+
+INSERT INTO new_table
+VALUE
+('"');
+
+INSERT INTO new_table
+VALUE
+('\\');
+
+INSERT INTO new_table
+VALUE
+('|');
+
+INSERT INTO new_table
+VALUE
+('`');
+
+INSERT INTO new_table
+VALUE
+('~');
+
+INSERT INTO new_table
+VALUE
+(',');
+
+INSERT INTO new_table
+VALUE
+('.');
+
+INSERT INTO new_table
+VALUE
+('<');
+
+INSERT INTO new_table
+VALUE
+('>');
+
+INSERT INTO new_table
+VALUE
+('/');
+
+INSERT INTO new_table
+VALUE
+('?');
+
+INSERT INTO new_table
+VALUE
+(' ');
+
+INSERT INTO new_table
+VALUE
+(NULL);
+
+SELECT * FROM new_table
+ORDER BY test_chars;
+
+delete from new_table;
+
+//--------------------------
+//--------------------------
+//--------------------------
+
+CREATE TABLE cookie_sales(
+id INT NOT NULL AUTO_INCREMENT,
+first_name VARCHAR(20),
+sales DEC(4,2),
+sale_date DATE,
+PRIMARY KEY (id)
+);
+
+INSERT INTO cookie_sales (first_name, sales, sale_date)
+VALUE ('Sindi', 24, '2015-08-06');
+
+INSERT INTO cookie_sales (first_name, sales, sale_date)
+VALUE ('Nika', 4.5, '2015-08-02');
+
+INSERT INTO cookie_sales (first_name, sales, sale_date)
+VALUE ('Marta', 20.1, '2015-08-09');
+
+INSERT INTO cookie_sales (first_name, sales, sale_date)
+VALUE ('Sindi', 10.1, '2015-08-10');
+
+INSERT INTO cookie_sales (first_name, sales, sale_date)
+VALUE ('Marta', 0, '2015-08-06');
+
+INSERT INTO cookie_sales (first_name, sales, sale_date)
+VALUE ('Linda', 2.78, '2015-08-02');
+
+INSERT INTO cookie_sales (first_name, sales, sale_date)
+VALUE ('Marta', 50.95, '2015-08-04');
+
+INSERT INTO cookie_sales (first_name, sales, sale_date)
+VALUE ('Linda', 15.32, '2015-08-03');
+
+INSERT INTO cookie_sales (first_name, sales, sale_date)
+VALUE ('Nika', 9.47, '2015-08-09');
+
+INSERT INTO cookie_sales (first_name, sales, sale_date)
+VALUE ('Marta', 14.23, '2015-08-02');
+
+INSERT INTO cookie_sales (first_name, sales, sale_date)
+VALUE ('Sindi', 22.4, '2015-08-04');
+
+SELECT * FROM cookie_sales
+ORDER BY first_name, sale_date, sales;
+
+SELECT SUM(sales) FROM cookie_sales
+WHERE first_name = 'Linda';
+
+SELECT SUM(sales) FROM cookie_sales
+WHERE first_name = 'Marta';
+
+SELECT SUM(sales) FROM cookie_sales
+WHERE first_name = 'Nika';
+
+SELECT SUM(sales) FROM cookie_sales
+WHERE first_name = 'Sindi';
+
+SELECT first_name, SUM(sales) AS sum_sales
+FROM cookie_sales
+GROUP BY first_name
+ORDER BY sum_sales DESC;
+
+SELECT first_name, AVG(sales) AS avg_sales
+FROM cookie_sales
+GROUP BY first_name
+ORDER BY avg_sales DESC;
+
+UPDATE cookie_sales
+SET sales = 5.95
+WHERE sales = 50.95;
+
+SELECT first_name, MIN(sales) AS min_sales
+FROM cookie_sales
+GROUP BY first_name
+ORDER BY min_sales DESC;
+
+SELECT first_name, MAX(sales) AS max_sales
+FROM cookie_sales
+GROUP BY first_name
+ORDER BY max_sales DESC;
+
+SELECT first_name, COUNT(sale_date) AS s_date
+FROM cookie_sales
+GROUP BY first_name
+ORDER BY s_date DESC;
+
+INSERT INTO cookie_sales (first_name, sales, sale_date)
+VALUE ('Nika', 2.5, '2015-08-02');
+
+INSERT INTO cookie_sales
+VALUE (null, 'Nika', 2.5, '2015-08-11');
+
+SELECT DISTINCT sale_date
+FROM cookie_sales
+ORDER BY sale_date;
+
+SELECT COUNT(DISTINCT sale_date) AS count_sale_date
+FROM cookie_sales;
+
+SELECT first_name, COUNT(DISTINCT sale_date) AS s_date
+FROM cookie_sales
+GROUP BY first_name
+ORDER BY s_date DESC;
+
+SELECT first_name, SUM(sales) AS sum_sales
+FROM cookie_sales
+GROUP BY first_name
+ORDER BY sum_sales DESC
+LIMIT 2;
+
+SELECT first_name, SUM(sales) AS sum_sales
+FROM cookie_sales
+GROUP BY first_name
+ORDER BY sum_sales DESC
+LIMIT 1, 1;
+
+//--------------------------
+//--------------------------
+//--------------------------
+
+... WHERE SUBSTRING_INDEX (interest, ',', 1) = 'animals';
+
+//--------------------------
+
+CREATE TABLE my_contacts(
+contact_id INT NOT NULL AUTO_INCREMENT ,
+last_name VARCHAR(30),
+first_name VARCHAR(20),
+email VARCHAR(50),
+gender CHAR(1),
+birthday DATE,
+profession VARCHAR(50),
+location VARCHAR(50),
+status VARCHAR(20),
+PRIMARY KEY (contact_id)
+);
+
+CREATE TABLE interests(
+int_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+contact_id INT NOT NULL,
+interest VARCHAR(50) NOT NULL,
+CONSTRAINT my_contacts_contact_id_fk
+FOREIGN KEY (contact_id)
+REFERENCES my_contacts (contact_id)
+);
+
+
