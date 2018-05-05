@@ -769,4 +769,220 @@ FOREIGN KEY (contact_id)
 REFERENCES my_contacts (contact_id)
 );
 
+//---------------------------
+//---------------------------
+//---------------------------
+
+create database coins;
+
+use coins;
+
+create table piggy_bank
+(
+id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+coin CHAR(1) NOT NULL,
+coin_year CHAR(4)
+);
+
+INSERT INTO piggy_bank
+VALUES 
+(NULL, 'Q', '1990'),
+(NULL, 'P', '1972'),
+(NULL, 'N', '2005'),
+(NULL, 'Q', '1999'),
+(NULL, 'Q', '1981'),
+(NULL, 'D', '1940'),
+(NULL, 'Q', '1980'),
+(NULL, 'P', '2001'), 
+(NULL, 'D', '1926'),
+(NULL, 'P', '1999');  
+
+update piggy_bank
+set coin = 'D' where coin_year IN ('1940', '1981', '1926');
+
+SELECT * FROM piggy_bank;
+
+CREATE VIEW pb_quarters AS 
+SELECT * FROM piggy_bank
+WHERE coin = 'Q';
+
+CREATE VIEW pb_dimes AS 
+SELECT * FROM piggy_bank 
+WHERE coin = 'D' WITH CHECK OPTION;
+
+ALTER TABLE piggy_bank
+MODIFY COLUMN coin_year INT(4);
+
+SELECT * FROM pb_quarters
+ORDER BY coin_year DESC;
+
+SELECT * FROM pb_dimes;
+
+INSERT INTO pb_quarters VALUES (NULL, 'Q', '1993');
+
+INSERT INTO pb_quarters VALUES (NULL, 'D', '1942');
+
+INSERT INTO pb_dimes VALUES (NULL, 'Q', '2005');
+
+DELETE FROM pb_quarters WHERE coin = 'N' OR coin = 'P' OR coin = 'D';
+
+UPDATE pb_quarters SET coin = 'Q' WHERE coin = 'P';
+
+alter table piggy_bank
+ENGINE = MyISAM;
+
+show create table piggy_bank;
+
+//--------------------------
+
+alter table piggy_bank
+CHARSET = latin1;
+
+//--------------------------
+
+START TRANSACTION;
+SELECT * FROM piggy_bank;
+update piggy_bank set coin = 'Q' where  coin = 'D';
+SELECT * FROM piggy_bank;
+ROLLBACK;
+SELECT * FROM piggy_bank;
+
+START TRANSACTION;
+SELECT * FROM piggy_bank;
+update piggy_bank set coin = 'Q' where  coin = 'D';
+SELECT * FROM piggy_bank;
+COMMIT;
+SELECT * FROM piggy_bank;
+
+//--------------------------
+//--------------------------
+//--------------------------
+
+CREATE TABLE clown_info(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(15) NOT NULL,
+gender CHAR(1) CHECK(gender IN('f', 'm')),
+description VARCHAR(100),
+boss_id INT NOT NULL 
+);
+
+CREATE TABLE info_activity(
+id INT NOT NULL, CONSTRAINT clown_info_id_fk FOREIGN KEY(id) REFERENCES clown_info(id),
+activity_id INT NOT NULL, CONSTRAINT activities_activity_id_fk FOREIGN KEY(activity_id) REFERENCES activities(activity_id)
+);
+
+CREATE TABLE activities(
+activity_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+activity VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE info_location(
+id INT NOT NULL, CONSTRAINT clown_info_idloc_fk FOREIGN KEY(id) REFERENCES clown_info(id),
+location_id INT NOT NULL, CONSTRAINT locations_location_id_fk FOREIGN KEY(location_id) REFERENCES locations(location_id),
+`when`DATE
+);
+
+CREATE TABLE locations(
+location_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+location VARCHAR(50) NOT NULL
+);
+
+SELECT c1.name,
+(SELECT name FROM clown_info
+where c1.boss_id = id) AS boss
+from clown_info c1;
+
+INSERT INTO clown_info
+VALUES 
+(NULL,'Elsie', 'f', 'red hair, green suit, huge shoes', 3),
+(NULL,'Pickles', 'm', 'red hair, blue suit, huge shoes', 5),
+(NULL,'Snagles', 'f', 'yellow shirt, red pants', 10),
+(NULL,'Mr. Hobo', 'm', 'cigar, black hair, little hat', 3),
+(NULL,'Clarabelle', 'f', 'rose-colored glasses, big flower, blue dress', 10),
+(NULL,'Scooter', 'm', 'blue hair, red suit, big nose', 3),
+(NULL,'Zippo', 'f', 'orange suit, pants', 3),
+(NULL,'Babe', 'f', 'pink suit with sparkles', 5),
+(NULL,'Bonzo', 'm', 'a woman''s dress in polka dots', 5),
+(NULL,'Sniffles', 'm', 'green-purple suit, long nose', 10);
+
+
+INSERT INTO locations
+VALUES 
+(NULL,'The Cherry Hill''s House'),
+(NULL,'Jack Green''s Party'),
+(NULL,'Bolmard'),
+(NULL,'BG Circus'),
+(NULL,'Oakland Hospital'),
+(NULL,'Milstown Shopping Center'),
+(NULL,'Earl''s Driving School Earl'),
+(NULL,'Tracy''s Institution'),
+(NULL,'Dixon Park');
+
+INSERT INTO activities
+VALUES 
+(NULL,'horn'),
+(NULL,'umbrella'),
+(NULL,'violin'),
+(NULL,'dances'),
+(NULL,'singing'),
+(NULL,'little cars'),
+(NULL,'balancing'),
+(NULL,'balls'),
+(NULL,'chants');
+
+INSERT INTO info_activity
+VALUES 
+(1,8),
+(2,1),
+(2,3),
+(3,2),
+(4,9),
+(5,4),
+(5,7),
+(6,5),
+(6,6),
+(7,9),
+(8,8),
+(9,7);
+
+INSERT INTO info_location
+VALUES 
+(1,8, '2016-09-23'),
+(2,1, '2016-09-23'),
+(2,3, '2016-09-25'),
+(3,2, '2016-09-28'),
+(4,9, '2016-10-01'),
+(5,4, '2016-09-15'),
+(5,7, '2016-09-20'),
+(6,5, '2016-09-21'),
+(6,6, '2016-09-25'),
+(7,9, '2016-09-29'),
+(8,8, '2016-09-14'),
+(9,7, '2016-09-15');
+
+SELECT ci.name, ai.activity_id 
+FROM 
+clown_info ci
+NATURAL JOIN
+info_activity ai;
+
+SELECT a.activity, ai.id 
+FROM 
+activities a
+NATURAL JOIN
+info_activity ai;
+
+select tbl1.name, tbl2.info 
+ from tbl3
+      join tbl1 on tbl1.id=tbl3.id1 
+      join tbl2 on tbl2.id=tbl3.id2
+
+create table clown_plus_activities(
+select ci.name, act.activity
+from info_activity ai
+inner join clown_info ci on ci.id = ai.id 
+inner join activities act on act.activity_id = ai.activity_id);
+
+select * from clown_plus_activities
+ORDER by name;
 
